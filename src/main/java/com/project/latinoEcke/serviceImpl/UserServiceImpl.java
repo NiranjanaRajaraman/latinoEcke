@@ -82,12 +82,12 @@ public class UserServiceImpl implements UserService {
 
 	private User getUserFromMap(Map<String, String> requestMap, User userObj) {
 
-//		user.setName(requestMap.get("name"));
+		// user.setName(requestMap.get("name"));
 		userObj.setContactNumber(requestMap.get("contactNumber"));
-//		user.setEmail(requestMap.get("email"));
+		// user.setEmail(requestMap.get("email"));
 		userObj.setPassWord(requestMap.get("passWord"));
-//		user.setRole(requestMap.get("role"));
-//		user.setIsEnabled(false);
+		// user.setRole(requestMap.get("role"));
+		// user.setIsEnabled(false);
 		return userObj;
 	}
 
@@ -163,20 +163,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<List<User>> getAllAdmins() {
 		try {
-			if (jwtFilter.isSuperAdmin()) {
-				List<User> userFromDb = userRepository.findByRole("admin");
-				if (Objects.nonNull(userFromDb) || !userFromDb.isEmpty()) {
-					return new ResponseEntity<>(userFromDb, HttpStatus.OK);
-				} else {
-					return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
-				}
-
+			// if (jwtFilter.isSuperAdmin()) {
+			List<User> userFromDb = userRepository.findByRole("admin");
+			if (Objects.nonNull(userFromDb) || !userFromDb.isEmpty()) {
+				return new ResponseEntity<>(userFromDb, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
-
+				return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
 			}
 
-		} catch (Exception ex) {
+			// } else {
+			// return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
+
+			// }
+
+		} catch (
+
+		Exception ex) {
 			ex.printStackTrace();
 		}
 		return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
