@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResponseEntity<List<User>> getAllAdmins() {
 		try {
-			// if (jwtFilter.isSuperAdmin()) {
+			 if (jwtFilter.isSuperAdmin()) {
 			List<User> userFromDb = userRepository.findByRole("admin");
 			if (Objects.nonNull(userFromDb) || !userFromDb.isEmpty()) {
 				return new ResponseEntity<>(userFromDb, HttpStatus.OK);
@@ -171,10 +171,10 @@ public class UserServiceImpl implements UserService {
 				return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
 			}
 
-			// } else {
-			// return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
+			 } else {
+			 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
 
-			// }
+			 }
 
 		} catch (
 
