@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 				User userObj = userRepository.findByEmailAndAdminId(requestMap.get("email"), requestMap.get("adminId"));
 				if (Objects.nonNull(userObj)) {
 					userRepository.save(getUserFromMap(requestMap, userObj));
-					return ProjectUtils.getResponseEntity("SignUp successfull", HttpStatus.OK);
+					return ProjectUtils.getResponseEntity("Admin signed Up successfully", HttpStatus.OK);
 				} else {
 					return ProjectUtils.getResponseEntity("Incorrect email/Incorrect adminID! Contact team",
 							HttpStatus.BAD_REQUEST);
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		return new ResponseEntity<String>("{\"message\":\"" + "Bad credentials." + "\"}", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("{\"message\":\"" + "Incorrect Details, Please try again" + "\"}", HttpStatus.BAD_REQUEST);
 	}
 
 	@Override
