@@ -42,10 +42,17 @@ public class JWTUtil {
 		return extractExpiration(token).before(new Date())?true:false;
 	}
 	
-	public String generateToken(String userName, String role, String name) {
+	public String generateUserToken(String userName, String role, String name) {
 		Map<String,Object> claims= new HashMap<>();
 		claims.put("role", role);
 		claims.put("name", name );
+		return createToken(claims, userName);
+		
+	}
+	public String generateOrganizerToken(String userName, String organizationName, String organizerName) {
+		Map<String,Object> claims= new HashMap<>();
+		claims.put("organizationName", organizationName);
+		claims.put("organizerName", organizerName );
 		return createToken(claims, userName);
 		
 	}

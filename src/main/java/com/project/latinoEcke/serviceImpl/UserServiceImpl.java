@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
 				if (customerUserDetailsService.getUserDetail().getIsEnabled().equals(true)) {
 					return new ResponseEntity<String>(
 							"{\"token\":\""
-									+ jwtUtil.generateToken(customerUserDetailsService.getUserDetail().getEmail(),
+									+ jwtUtil.generateUserToken(customerUserDetailsService.getUserDetail().getEmail(),
 											customerUserDetailsService.getUserDetail().getRole(),
 											customerUserDetailsService.getUserDetail().getName())
 									+ "\"}",

@@ -16,9 +16,13 @@ public class Organizer {
 
 	private String organizerId;
 	private String organizerName;
+	private String organizationName;
 	private String contactNumber;
 	private String email;
 	private String passWord;
+	private Boolean isPermitted;
+	private Boolean isApproved;
+	private String ApprovedBy;
 	private List<Event> eventHosted;
 	
 	public String getOrganizerId() {
@@ -56,5 +60,29 @@ public class Organizer {
 	}
 	public void setEventHosted(List<Event> eventHosted) {
 		this.eventHosted = eventHosted;
+	}
+	public Boolean getIsPermitted() {
+		return isPermitted;
+	}
+	public void setIsPermitted(Boolean isPermitted) {
+		this.isPermitted = isPermitted;
+	}
+	public String getOrganizationName() {
+		return organizationName;
+	}
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+	public Boolean getIsApproved() {
+		return isApproved;
+	}
+	public void setIsApproved(Boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	public String getApprovedBy() {
+		return ApprovedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		ApprovedBy = approvedBy;
 	}
 }
