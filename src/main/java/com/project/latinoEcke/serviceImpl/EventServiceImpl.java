@@ -296,15 +296,27 @@ public class EventServiceImpl implements EventService {
 			LocalDate tomorrow = today.plusDays(1);
 			LocalDate dayAfterTomorrow = today.plusDays(2);
 			
-			Map mapResponse = new HashMap<>();
+			HashMap<String, List<Event>> mapResponse = new HashMap<>();
 			
 			List<Event> todayEvents = eventRepository.findByDateAndIsApproved(today.toString(),true);
 			List<Event> tomorrowEvents = eventRepository.findByDateAndIsApproved(tomorrow.toString(),true);
 			List<Event> dayAfterTomorrowEvents = eventRepository.findByDateAndIsApproved(dayAfterTomorrow.toString(),true);
-			
-			mapResponse.put("today", todayEvents);
-			mapResponse.put("tomorrow", tomorrowEvents);
-			mapResponse.put("dayAfterTomorrow", dayAfterTomorrowEvents);
+			if(!todayEvents.isEmpty()) {
+				mapResponse.put("today", todayEvents);
+			}
+			else {
+				mapResponse.put("today", new ArrayList<>());
+			}
+			if(!tomorrowEvents.isEmpty()) {
+				mapResponse.put("tomorrow", tomorrowEvents);
+			}else {
+				mapResponse.put("tomorrow", new ArrayList<>());
+			}
+			if(!dayAfterTomorrowEvents.isEmpty()) {
+				mapResponse.put("dayAfterTomorrow", dayAfterTomorrowEvents);
+			}else {
+				mapResponse.put("dayAfterTomorrow", new ArrayList<>());
+			}
 				return new ResponseEntity<>(mapResponse, HttpStatus.OK);
 			
 
