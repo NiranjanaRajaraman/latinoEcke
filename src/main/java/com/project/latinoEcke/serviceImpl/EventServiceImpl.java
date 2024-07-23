@@ -303,8 +303,8 @@ public class EventServiceImpl implements EventService {
 			List<Event> dayAfterTomorrowEvents = eventRepository.findByDateAndIsApproved(dayAfterTomorrow.toString(),true);
 			
 			mapResponse.put("today", todayEvents);
-			mapResponse.put("tomorrow", todayEvents);
-			mapResponse.put("dayAfterTomorrow", todayEvents);
+			mapResponse.put("tomorrow", tomorrowEvents);
+			mapResponse.put("dayAfterTomorrow", dayAfterTomorrowEvents);
 				return new ResponseEntity<>(mapResponse, HttpStatus.OK);
 			
 
