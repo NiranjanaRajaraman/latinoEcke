@@ -53,6 +53,9 @@ public class JWTUtil {
 		Map<String,Object> claims= new HashMap<>();
 		claims.put("organizationName", organizationName);
 		claims.put("organizerName", organizerName );
+		// Addin more informetion in the token
+		claims.put("name", organizationName );
+		claims.put("role", "user" );
 		return createToken(claims, userName);
 		
 	}
