@@ -221,6 +221,10 @@ public class OrganizerServiceImpl implements OrganizerService {
 
 			if (validateForgotPasswordMap(requestMap)) {
 				Organizer userObj = organizerRepository.findByEmail(requestMap.get("email"));
+				Otp otpList = otpRepository.findByEmail(requestMap.get("email"));
+				if(Objects.nonNull(otpList)) {
+					otpRepository.delete(otpList);
+				}
 				if (Objects.nonNull(userObj)) {
 					Otp otpObj = new Otp();
 					String otp = generateOtp();
@@ -274,7 +278,6 @@ public class OrganizerServiceImpl implements OrganizerService {
 				if (Objects.nonNull(otpObj)) {
 					if (otpObj.getOtp().equalsIgnoreCase(requestMap.get("otp"))) {
 						if (otpObj.getOtpExpiry().isAfter(LocalDateTime.now())) {
-
 							userObj.setPassWord(requestMap.get("passWord"));
 							otpObj.setOtp(null);
 							otpObj.setOtpExpiry(null);
